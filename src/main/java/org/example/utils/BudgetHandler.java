@@ -230,6 +230,7 @@ public class BudgetHandler {
         } else {
             boolean isSent = db.transferToUserByLogin(reseiverLogin, amountToSend);
             if (isSent) {
+                db.addOperation(new NewOperation(user, transferOutCategory, amountToSend));
                 System.out.println("Операция успешно выполнена! Отправлено " + amountToSend + " пользователю " + reseiverLogin);
             }
         }

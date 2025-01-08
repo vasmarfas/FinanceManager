@@ -138,6 +138,7 @@ public class DB {
                     true
             );
             curUser.categories.add(newCategory);
+            transferInCategory = newCategory;
             updateUser(curUser);
         }
         NewOperation incomeOp = new NewOperation(curUser, transferInCategory, amount);
