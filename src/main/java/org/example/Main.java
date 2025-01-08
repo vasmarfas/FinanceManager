@@ -90,7 +90,7 @@ public class Main {
                     System.out.println("Для использования данной функции необходимо войти в систему.");
                     sleepDelay(1000);
                 } else {
-                    addOperation(db, currentUser);
+                    currentUser = addOperation(db, currentUser);
                     sleepDelay(1000);
                 }
                 break;
@@ -101,7 +101,7 @@ public class Main {
                     System.out.println("Для использования данной функции необходимо войти в систему.");
                     sleepDelay(1000);
                 } else {
-                    editCategoryGateway(db, currentUser);
+                    currentUser = editCategoryGateway(db, currentUser);
                     sleepDelay(1000);
                 }
                 break;
@@ -145,7 +145,7 @@ public class Main {
                     System.out.println("Для использования данной функции необходимо войти в систему.");
                     sleepDelay(1000);
                 } else {
-                    transferMoney(db, currentUser);
+                    currentUser = transferMoney(db, currentUser);
                     sleepDelay(1000);
                 }
                 break;
