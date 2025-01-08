@@ -48,6 +48,7 @@ public class Main {
             case "0": {
                 currentUser = null;
                 System.out.println("Вы успешно вышли из системы!");
+                sleepDelay(500);
                 break;
             }
             //вход
@@ -60,12 +61,15 @@ public class Main {
                     User curUser = db.authUser(curLogin, curPassword);
                     if (curUser == null) {
                         System.out.println("Вход в систему не удался: неверный пароль");
+                        sleepDelay(1000);
                     } else {
                         currentUser = curUser;
                         System.out.println("Вы успешно вошли в систему!");
+                        sleepDelay(1000);
                     }
                 } else {
                     System.out.println("Вход в систему не удался: логин не найден");
+                    sleepDelay(1000);
                 }
                 break;
             }
@@ -77,16 +81,17 @@ public class Main {
                 String curPassword = scanner.nextLine();
                 currentUser = db.addUser(new NewUser(curLogin, curPassword));
                 System.out.println("Регистрация прошла успешно! Возврат в главное меню...\n");
-                sleepDelay(500);
+                sleepDelay(1000);
                 break;
             }
             //Добавить операцию
             case "1": {
                 if (currentUser == null) {
                     System.out.println("Для использования данной функции необходимо войти в систему.");
-                    sleepDelay(500);
+                    sleepDelay(1000);
                 } else {
                     addOperation(db, currentUser);
+                    sleepDelay(1000);
                 }
                 break;
             }
@@ -94,9 +99,10 @@ public class Main {
             case "2": {
                 if (currentUser == null) {
                     System.out.println("Для использования данной функции необходимо войти в систему.");
-                    sleepDelay(500);
+                    sleepDelay(1000);
                 } else {
                     editCategoryGateway(db, currentUser);
+                    sleepDelay(1000);
                 }
                 break;
             }
@@ -104,9 +110,10 @@ public class Main {
             case "3": {
                 if (currentUser == null) {
                     System.out.println("Для использования данной функции необходимо войти в систему.");
-                    sleepDelay(500);
+                    sleepDelay(1000);
                 } else {
                     printTotalBudgetAmount(db, currentUser);
+                    sleepDelay(1000);
                 }
                 break;
             }
@@ -114,9 +121,10 @@ public class Main {
             case "4": {
                 if (currentUser == null) {
                     System.out.println("Для использования данной функции необходимо войти в систему.");
-                    sleepDelay(500);
+                    sleepDelay(1000);
                 } else {
                     printDetailedBudgetAmount(db, currentUser);
+                    sleepDelay(1000);
                 }
                 break;
             }
@@ -124,9 +132,10 @@ public class Main {
             case "5": {
                 if (currentUser == null) {
                     System.out.println("Для использования данной функции необходимо войти в систему.");
-                    sleepDelay(500);
+                    sleepDelay(1000);
                 } else {
                     printCalculationByCategory(db, currentUser);
+                    sleepDelay(1000);
                 }
                 break;
             }
@@ -134,9 +143,10 @@ public class Main {
             case "6": {
                 if (currentUser == null) {
                     System.out.println("Для использования данной функции необходимо войти в систему.");
-                    sleepDelay(500);
+                    sleepDelay(1000);
                 } else {
                     transferMoney(db, currentUser);
+                    sleepDelay(1000);
                 }
                 break;
             }
