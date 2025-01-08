@@ -6,10 +6,7 @@ import org.example.db.models.NewOperation;
 import org.example.db.models.Operation;
 import org.example.db.models.User;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class BudgetCalculator {
     static Scanner scanner = new Scanner(System.in);
@@ -94,13 +91,16 @@ public class BudgetCalculator {
             System.out.println("Похоже, вы ввели неверное число, попробуйте ещё раз.");
             return;
         }
-
+        ArrayList<Integer> selectedCategoriesID = new ArrayList<>();
+        for (Category cat: selectedCategories) {
+            selectedCategoriesID.add(cat.id);
+        }
         float profit = 0;
         float notProfit = 0;
         HashMap<Category, Float> profitCategories = new HashMap<>();
         HashMap<Category, Float> nonProfitCategories = new HashMap<>();
         for (Operation operation : db.getAllUserOperations(user)) {
-            if (selectedCategories.contains(operation.category)) {
+            if (selectedCategoriesID.contains(operation.category.id)) {
                 if (operation.category.isProfit) {
                     profit += operation.amount;
                     Float curOpAmount = profitCategories.get(operation.category);

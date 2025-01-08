@@ -59,7 +59,7 @@ public class DB {
     public ArrayList<Operation> getAllUserOperations(User user) {
         ArrayList<Operation> outList = new ArrayList<>();
         for (Operation link : operationDB) {
-            if (Objects.equals(link.user, user)) {
+            if (Objects.equals(link.user.login, user.login)) {
                 outList.add(link);
             }
         }

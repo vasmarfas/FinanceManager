@@ -3,7 +3,11 @@ package org.example;
 import org.example.db.*;
 import org.example.db.models.NewUser;
 import org.example.db.models.User;
+import org.example.utils.PasswordHasher;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -58,7 +62,8 @@ public class Main {
                 if (db.checkLogin(curLogin)) {
                     System.out.println("Введите ваш пароль:");
                     String curPassword = scanner.nextLine();
-                    User curUser = db.authUser(curLogin, curPassword);
+                    String hashedPass = PasswordHasher.hashPassword(curPassword);
+                    User curUser = db.authUser(curLogin, hashedPass);
                     if (curUser == null) {
                         System.out.println("Вход в систему не удался: неверный пароль");
                         sleepDelay(1000);
@@ -79,7 +84,9 @@ public class Main {
                 String curLogin = scanner.nextLine();
                 System.out.println("Введите ваш пароль:");
                 String curPassword = scanner.nextLine();
-                currentUser = db.addUser(new NewUser(curLogin, curPassword));
+                String hashedPass = PasswordHasher.hashPassword(curPassword);
+
+                currentUser = db.addUser(new NewUser(curLogin, hashedPass));
                 System.out.println("Регистрация прошла успешно! Возврат в главное меню...\n");
                 sleepDelay(1000);
                 break;
